@@ -1,0 +1,3 @@
+aqi_crawler/bin/Debug/
+aqi_crawler/bin/Release/*.csv
+aqi_crawler/bin/Release/*.txt

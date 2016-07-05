@@ -1,0 +1,7 @@
+c:\users\gengy\documents\visual studio 2012\Projects\aqi_crawler\aqi_crawler\bin\Release\aqi_crawler.exe.config
+c:\users\gengy\documents\visual studio 2012\Projects\aqi_crawler\aqi_crawler\bin\Release\web.py
+c:\users\gengy\documents\visual studio 2012\Projects\aqi_crawler\aqi_crawler\bin\Release\aqi_crawler.exe
+c:\users\gengy\documents\visual studio 2012\Projects\aqi_crawler\aqi_crawler\bin\Release\aqi_crawler.pdb
+c:\users\gengy\documents\visual studio 2012\Projects\aqi_crawler\aqi_crawler\obj\Release\aqi_crawler.csprojResolveAssemblyReference.cache
+c:\users\gengy\documents\visual studio 2012\Projects\aqi_crawler\aqi_crawler\obj\Release\aqi_crawler.exe
+c:\users\gengy\documents\visual studio 2012\Projects\aqi_crawler\aqi_crawler\obj\Release\aqi_crawler.pdb
