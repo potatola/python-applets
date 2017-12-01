@@ -48,21 +48,12 @@ def get_pressure_data():
     while True:
         try:
             print "Try fetch pressure data from the website..."
-            web_file = urllib.urlopen('http://www.nmc.cn/publish/forecast/ABJ/beijing.html#fragment-1#userconsent##userconsent#')
-            web_content = web_file.readlines()
+            web_file = urllib2.urlopen('http://www.nmc.cn/f/rest/passed/54511')
+            presures = web_file.read()
+            return presures
             
-            for content in web_content:
-                match = pattern_pressure.match(content)
-                if match:
-                    res = match.groups()[0]
-                    res = res.replace(',,', ',0,').replace('[,', '[0,')
-                    return res
-            
-            print "No data matched, retry!"
-            time.sleep(1)
-            
-        except:
-            print "Exception, retry!"
+        except Exception as ex:
+            print ex, "Exception, retry!"
             time.sleep(1)
                 
 def capture_location(loc_num, pressure_data):
@@ -72,9 +63,11 @@ def capture_location(loc_num, pressure_data):
     curr_time = dt['od']['od0']
     location = dt['od']['od1']
 
+    print pressure_data
+
     pr = json.loads(pressure_data)
 
-    i_pr = reversed(pr)
+    i_pr = iter(pr)
 
     with open(curr_time + '_' + loc_num + '.csv', 'wb') as f:
         table_title = [u'时间', 'AQI', u'温度', u'相对湿度', u'降水', u'风向', u'风力', '23', u'气压']
@@ -84,10 +77,11 @@ def capture_location(loc_num, pressure_data):
 
         dt['od']['od2'].pop()
         for log in dt['od']['od2']:
-            writer.writerow([log['od21'], log['od28'], log['od22'], log['od27'], log['od26'], log['od24'].encode("gb2312"), log['od25'], log['od23'], next(i_pr)])
+            writer.writerow([log['od21'], log['od28'], log['od22'], log['od27'], log['od26'], log['od24'].encode("gb2312"), log['od25'], log['od23'], next(i_pr)["pressure"]])
             
 
 pressure_data = get_pressure_data()
+
 for i in range(1, 16):
     loc_num = "%0.2d" % i
     capture_location(loc_num, pressure_data)
